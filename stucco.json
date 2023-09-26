@@ -1,0 +1,9 @@
+{
+  "resolvers": {
+    "Query.helloworld": {
+      "resolve": {
+        "name": "lib/Query/helloworld.js"
+      }
+    }
+  }
+}

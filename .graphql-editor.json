@@ -1,0 +1,11 @@
+{
+    "namespace": "this-is-my-first-app",
+    "project": "hello-world-app",
+    "projectVersion": "latest",
+    "typingsEnv": "node",
+    "typingsHost": "http://localhost:8080/",
+    "typingsDir": "./src",
+    "backendSrc": "./src",
+    "backendLib": "./lib",
+    "schemaDir": "./"
+}
