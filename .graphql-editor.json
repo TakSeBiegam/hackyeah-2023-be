@@ -1,6 +1,6 @@
 {
-    "namespace": "this-is-my-first-app",
-    "project": "hello-world-app",
+    "namespace": "moj-testowy-workspace",
+    "project": "x-project",
     "projectVersion": "latest",
     "typingsEnv": "node",
     "typingsHost": "http://localhost:8080/",

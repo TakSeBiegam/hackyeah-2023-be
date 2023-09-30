@@ -1,9 +1,14 @@
 {
-  "resolvers": {
-    "Query.helloworld": {
-      "resolve": {
-        "name": "lib/Query/helloworld.js"
-      }
+    "resolvers": {
+        "Query.getUniByTags": {
+            "resolve": {
+                "name": "lib/Query/getUniByTags.js"
+            }
+        },
+        "Mutation.useFineTuneJob": {
+            "resolve": {
+                "name": "lib\\Mutation\\useFineTuneJob"
+            }
+        }
     }
-  }
 }

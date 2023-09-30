@@ -1,7 +1,61 @@
 type Query{
-	helloworld: String
+	getUniByTags(
+		tags: [String!]!
+	): [Path!]
+	listUnis: [University!]!
+	listTags: [String!]!
+}
+
+type Mutation{
+	createBotDialogue(
+		dialogueId: String
+		payload: BotDialogueInput!
+	): String
+	useFineTuneJob: Boolean!
+	reactOnConversation(
+		conversationId: String!
+	): Boolean!
+}
+
+input BotDialogueInput{
+	role: DialogueRole!
+	payload: String!
+}
+
+type University{
+	name: String!
+	paths: [String!]!
+}
+
+type Path{
+	name: String
+	tags: [String!]!
+}
+
+type Conversation{
+	_id: String!
+	createdAt: String!
+	payload: [ConversationPayload!]!
+	reaction: ConversationReaction!
+}
+
+type ConversationPayload{
+	role: DialogueRole!
+	content: String!
+}
+
+enum DialogueRole{
+	assistant
+	user
+}
+
+enum ConversationReaction{
+	LIKE
+	DISLIKE
+	NOTREACTED
 }
 
 schema{
 	query: Query
+	mutation: Mutation
 }

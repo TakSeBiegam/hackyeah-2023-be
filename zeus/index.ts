@@ -1,10 +1,9 @@
 /* eslint-disable */
 
+import { AllTypesProps, ReturnTypes, Ops } from './const';
 
-import { AllTypesProps, ReturnTypes, Ops } from './const.js';
-import fetch, { Response } from 'node-fetch';
-import WebSocket from 'ws';
-export const HOST = "http://localhost:8080/"
+
+export const HOST="Specify host"
 
 
 export const HEADERS = {}
@@ -834,190 +833,64 @@ type ZEUS_UNIONS = never
 
 export type ValueTypes = {
     ["Query"]: AliasType<{
-getUniByTags?: [{	tags: Array<string> | Variable<any, string>},ValueTypes["Path"]],
+getUniByTags?: [{	tags: Array<string> | Variable<any, string>},ValueTypes["University"]],
+sendBotMessage?: [{	content: string | Variable<any, string>,	contextId: string | Variable<any, string>},boolean | `@${string}`],
 	listUnis?:ValueTypes["University"],
-	listTags?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["Mutation"]: AliasType<{
-createBotDialogue?: [{	dialogueId?: string | undefined | null | Variable<any, string>,	payload: ValueTypes["BotDialogueInput"] | Variable<any, string>},boolean | `@${string}`],
-	useFineTuneJob?:boolean | `@${string}`,
-reactOnConversation?: [{	conversationId: string | Variable<any, string>},boolean | `@${string}`],
-		__typename?: boolean | `@${string}`
-}>;
-	["BotDialogueInput"]: {
-	role: ValueTypes["DialogueRole"] | Variable<any, string>,
-	payload: string | Variable<any, string>
-};
 	["University"]: AliasType<{
-	name?:boolean | `@${string}`,
-	paths?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["Path"]: AliasType<{
 	name?:boolean | `@${string}`,
 	tags?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
-}>;
-	["Conversation"]: AliasType<{
-	_id?:boolean | `@${string}`,
-	createdAt?:boolean | `@${string}`,
-	payload?:ValueTypes["ConversationPayload"],
-	reaction?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["ConversationPayload"]: AliasType<{
-	role?:boolean | `@${string}`,
-	content?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["DialogueRole"]:DialogueRole;
-	["ConversationReaction"]:ConversationReaction
+}>
   }
 
 export type ResolverInputTypes = {
     ["Query"]: AliasType<{
-getUniByTags?: [{	tags: Array<string>},ResolverInputTypes["Path"]],
+getUniByTags?: [{	tags: Array<string>},ResolverInputTypes["University"]],
+sendBotMessage?: [{	content: string,	contextId: string},boolean | `@${string}`],
 	listUnis?:ResolverInputTypes["University"],
-	listTags?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["Mutation"]: AliasType<{
-createBotDialogue?: [{	dialogueId?: string | undefined | null,	payload: ResolverInputTypes["BotDialogueInput"]},boolean | `@${string}`],
-	useFineTuneJob?:boolean | `@${string}`,
-reactOnConversation?: [{	conversationId: string},boolean | `@${string}`],
-		__typename?: boolean | `@${string}`
-}>;
-	["BotDialogueInput"]: {
-	role: ResolverInputTypes["DialogueRole"],
-	payload: string
-};
 	["University"]: AliasType<{
-	name?:boolean | `@${string}`,
-	paths?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["Path"]: AliasType<{
 	name?:boolean | `@${string}`,
 	tags?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
-	["Conversation"]: AliasType<{
-	_id?:boolean | `@${string}`,
-	createdAt?:boolean | `@${string}`,
-	payload?:ResolverInputTypes["ConversationPayload"],
-	reaction?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["ConversationPayload"]: AliasType<{
-	role?:boolean | `@${string}`,
-	content?:boolean | `@${string}`,
-		__typename?: boolean | `@${string}`
-}>;
-	["DialogueRole"]:DialogueRole;
-	["ConversationReaction"]:ConversationReaction;
 	["schema"]: AliasType<{
 	query?:ResolverInputTypes["Query"],
-	mutation?:ResolverInputTypes["Mutation"],
 		__typename?: boolean | `@${string}`
 }>
   }
 
 export type ModelTypes = {
     ["Query"]: {
-		getUniByTags?: Array<ModelTypes["Path"]> | undefined,
-	listUnis: Array<ModelTypes["University"]>,
-	listTags: Array<string>
-};
-	["Mutation"]: {
-		createBotDialogue?: string | undefined,
-	useFineTuneJob: boolean,
-	reactOnConversation: boolean
-};
-	["BotDialogueInput"]: {
-	role: ModelTypes["DialogueRole"],
-	payload: string
+		getUniByTags?: ModelTypes["University"] | undefined,
+	sendBotMessage: string,
+	listUnis: Array<ModelTypes["University"]>
 };
 	["University"]: {
 		name: string,
-	paths: Array<string>
-};
-	["Path"]: {
-		name?: string | undefined,
 	tags: Array<string>
 };
-	["Conversation"]: {
-		_id: string,
-	createdAt: string,
-	payload: Array<ModelTypes["ConversationPayload"]>,
-	reaction: ModelTypes["ConversationReaction"]
-};
-	["ConversationPayload"]: {
-		role: ModelTypes["DialogueRole"],
-	content: string
-};
-	["DialogueRole"]:DialogueRole;
-	["ConversationReaction"]:ConversationReaction;
 	["schema"]: {
-	query?: ModelTypes["Query"] | undefined,
-	mutation?: ModelTypes["Mutation"] | undefined
+	query?: ModelTypes["Query"] | undefined
 }
     }
 
 export type GraphQLTypes = {
     ["Query"]: {
 	__typename: "Query",
-	getUniByTags?: Array<GraphQLTypes["Path"]> | undefined,
-	listUnis: Array<GraphQLTypes["University"]>,
-	listTags: Array<string>
-};
-	["Mutation"]: {
-	__typename: "Mutation",
-	createBotDialogue?: string | undefined,
-	useFineTuneJob: boolean,
-	reactOnConversation: boolean
-};
-	["BotDialogueInput"]: {
-		role: GraphQLTypes["DialogueRole"],
-	payload: string
+	getUniByTags?: GraphQLTypes["University"] | undefined,
+	sendBotMessage: string,
+	listUnis: Array<GraphQLTypes["University"]>
 };
 	["University"]: {
 	__typename: "University",
 	name: string,
-	paths: Array<string>
-};
-	["Path"]: {
-	__typename: "Path",
-	name?: string | undefined,
 	tags: Array<string>
-};
-	["Conversation"]: {
-	__typename: "Conversation",
-	_id: string,
-	createdAt: string,
-	payload: Array<GraphQLTypes["ConversationPayload"]>,
-	reaction: GraphQLTypes["ConversationReaction"]
-};
-	["ConversationPayload"]: {
-	__typename: "ConversationPayload",
-	role: GraphQLTypes["DialogueRole"],
-	content: string
-};
-	["DialogueRole"]: DialogueRole;
-	["ConversationReaction"]: ConversationReaction
+}
     }
-export const enum DialogueRole {
-	assistant = "assistant",
-	user = "user"
-}
-export const enum ConversationReaction {
-	LIKE = "LIKE",
-	DISLIKE = "DISLIKE",
-	NOTREACTED = "NOTREACTED"
-}
 
-type ZEUS_VARIABLES = {
-	["BotDialogueInput"]: ValueTypes["BotDialogueInput"];
-	["DialogueRole"]: ValueTypes["DialogueRole"];
-	["ConversationReaction"]: ValueTypes["ConversationReaction"];
-}
+
+type ZEUS_VARIABLES = {}
