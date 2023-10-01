@@ -1,5 +1,5 @@
-import { orm } from './db/orm';
-import { openai } from './finetuning';
+import { orm } from './db/orm.js';
+import { openai } from './finetuning.js';
 import { ObjectId } from 'mongodb';
 
 export type resp = {
@@ -21,10 +21,34 @@ export function canBeParsedToMyType(input: any): input is resp {
 
 export const createTags = async () => {
   const o = await orm();
-  const paths: string[] = [];
+  const p = `EDUKACJA TECHNICZNO - INFORMATYCZNA
+  informatyka techniczna
+  iżyniera metali
+  inżynieria obliczeniowa
+  inżyniera procesów przemysłowych
+  iżyniera metali niezależnych
+  inżyniera produkcji i jakości
+  iżyniera procesów odlewniczych
+  komputerowe wspomaganie procesów inżynierskich
+  technologie przemysłu 4.0
+  tworzenia i technologie motoryzacyjne
+  informatyka i ikonometria
+  zarządzanie
+  zarządzanie i inżyniera produkcji
+  informatyka społeczna
+  kulturoznawstwo
+  nowoczesne technologie w kryminastyce
+  socjologia
+  automatyka przemysłowa i robotyka
+  iżynieria akustyczna
+  inżyniera mechaniczna i materiałowa
+  iżynieria mechatroniczna
+  mechanika i budowa maszyn 
+  mechatronic engineering`;
+  const paths: string[] = p.trim().split('\n');
 
   for (let i = 0; i < paths.length; i++) {
-    const tag = await o('Paths').collection.findOne({ name: paths[i] });
+    const tag = await o('Paths').collection.findOne({ name: paths[i].toLowerCase() });
     if (tag) {
       continue;
     }
@@ -32,7 +56,9 @@ export const createTags = async () => {
       messages: [
         {
           role: 'user',
-          content: `create for me from 50 to 70 tags dla kierunku studiów, dla kierunku "${paths[i]}" in json 
+          content: `create for me from 50 to 70 tags dla kierunku studiów, dla kierunku "${paths[
+            i
+          ].toLowerCase()}" in json 
           {
           "name": String
           "tags": [String]
@@ -44,7 +70,7 @@ export const createTags = async () => {
     });
 
     if (chats.choices[0].message.content === null) {
-      console.log(`dropped on ${paths[i]}`);
+      console.log(`dropped on ${paths[i].toLowerCase()}`);
       continue;
     }
     try {
@@ -56,14 +82,15 @@ export const createTags = async () => {
     console.log('updating database');
     const new_object_id = new ObjectId();
     await o('Paths').collection.updateOne(
-      { name: paths[i] },
+      { name: paths[i].toLowerCase(), university: '65192c325f5751d084d54a9f' },
       {
         $set: {
           tags: (JSON.parse(chats.choices[0].message.content) as resp).tags,
         },
         $setOnInsert: {
           _id: String(new_object_id),
-          name: paths[i],
+          name: paths[i].toLowerCase(),
+          university: '65192c325f5751d084d54a9f',
         },
       },
       {

@@ -13,7 +13,7 @@
         },
         "Mutation.testEndpoint": {
             "resolve": {
-                "name": "lib\\Mutation\\testEndpoint.js"
+                "name": "lib/Mutation/testEndpoint.js"
             }
         },
         "Path.university": {
