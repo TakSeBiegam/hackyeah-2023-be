@@ -13,6 +13,7 @@
     "author": "GraphQL Editor Centaur Generator",
     "license": "ISC",
     "devDependencies": {
+        "@types/mongodb": "^4.0.7",
         "@types/node": "^18.15.1",
         "@types/node-fetch": "^2.6.2",
         "@types/ws": "^8.5.4",
