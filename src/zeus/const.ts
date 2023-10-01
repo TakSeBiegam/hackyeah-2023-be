@@ -25,7 +25,7 @@ export const AllTypesProps: Record<string,any> = {
 export const ReturnTypes: Record<string,any> = {
 	Query:{
 		suggestionUnivesties:"Path",
-		listJobs:"Job"
+		listJobs:"String"
 	},
 	Mutation:{
 		createBotDialogue:"String",

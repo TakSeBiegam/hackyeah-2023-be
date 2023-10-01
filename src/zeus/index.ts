@@ -835,7 +835,7 @@ type ZEUS_UNIONS = never
 export type ValueTypes = {
     ["Query"]: AliasType<{
 suggestionUnivesties?: [{	contextId: string | Variable<any, string>},ValueTypes["Path"]],
-	listJobs?:ValueTypes["Job"],
+	listJobs?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Mutation"]: AliasType<{
@@ -890,7 +890,7 @@ reactOnConversation?: [{	conversationId: string | Variable<any, string>,	reactio
 export type ResolverInputTypes = {
     ["Query"]: AliasType<{
 suggestionUnivesties?: [{	contextId: string},ResolverInputTypes["Path"]],
-	listJobs?:ResolverInputTypes["Job"],
+	listJobs?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Mutation"]: AliasType<{
@@ -950,7 +950,7 @@ reactOnConversation?: [{	conversationId: string,	reaction: boolean},boolean | `@
 export type ModelTypes = {
     ["Query"]: {
 		suggestionUnivesties?: Array<ModelTypes["Path"]> | undefined,
-	listJobs: ModelTypes["Job"]
+	listJobs?: string | undefined
 };
 	["Mutation"]: {
 		createBotDialogue?: string | undefined,
@@ -1003,7 +1003,7 @@ export type GraphQLTypes = {
     ["Query"]: {
 	__typename: "Query",
 	suggestionUnivesties?: Array<GraphQLTypes["Path"]> | undefined,
-	listJobs: GraphQLTypes["Job"]
+	listJobs?: string | undefined
 };
 	["Mutation"]: {
 	__typename: "Mutation",

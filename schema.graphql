@@ -2,7 +2,7 @@ type Query{
 	suggestionUnivesties(
 		contextId: String!
 	): [Path!]
-	listJobs: Job!
+	listJobs: String
 }
 
 type Mutation{

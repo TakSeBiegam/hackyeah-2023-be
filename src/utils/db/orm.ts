@@ -15,10 +15,13 @@ export const orm = async () => {
       _id: () => string;
       createdAt: () => string;
     }
-  >({
-    _id: () => new ObjectId().toHexString(),
-    createdAt: () => new Date().toISOString(),
-  });
+  >(
+    {
+      _id: () => new ObjectId().toHexString(),
+      createdAt: () => new Date().toISOString(),
+    },
+    async (db) => ({}),
+  );
 };
 
 export const MongOrb = await orm();

@@ -1,80 +1,69 @@
-# How to create a simple Hello World app with GraphQL Editor and Stucco.js in 2023
+# Welcome to gei-bookings :book:
 
-## Benefits of using GraphQL and stucco-js
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/graphql-editor/graphql-editor-integrations/blob/master/LICENSE)
+[![Build Status](https://github.com/graphql-editor/graphql-editor-integrations/actions/workflows/release.yml/badge.svg)](https://github.com/graphql-editor/graphql-editor-integrations/actions?query=branch%3Amaster)
 
-GraphQL is a query language for APIs that allows users to request the exact data they need in a flexible and efficient way. Stucco.js is a GraphQL backend runtime that makes it easy to develop and deploy GraphQL APIs.
+> The &#34;Gei-bookings&#34; integration is focused on providing essential tools for handling bookings and services, with enchanced error detection system which helps resolving problems
 
-## Requirements
+### :house: [Homepage](https://github.com/graphql-editor/graphql-editor-integrations)
 
-- Account on [GraphQL Editor website](https://app.graphqleditor.com/)
-- node.js [Node.js](https://nodejs.org/en/download)
-- graphql-editor-cli as global library [gecli](https://github.com/graphql-editor/graphql-editor-cli)
+## Installation :zap:
 
-## First things first
+<!-- prettier-ignore -->
+```sh
+npm install gei-bookings
+```
 
-Enter on website graphqleditor and create your first project by clicking on the middle page "Create", name your Workspace as you like, for now you can skip adding members, but remember, colaborating is fun.
+## Usage 🏗️
 
-Next step is creating our project, so click `new project` and name it `Hello-world-app`, after this step paste to your code area this simple schema
+##### We will be using graphql-editor-cli to speed-up the usage process, </br> You can install it with:
 
-```graphql
-type Query {
-  helloworld: String!
+<!-- prettier-ignore -->
+```sh
+npm install -g graphql-editor-cli
+```
+
+First, you can check out our [gei-bookings sandbox schema](https://app.graphqleditor.com/editor-integrations/bookings-sandbox) or create your own schema, but be sure to connect gei-bookings to your resolvers in microservices.
+
+create your .graphql-editor.json file in the root dir of project:
+
+```json
+{
+  "namespace": "editor-integrations",
+  "project": "bookings-sandbox",
+  "projectVersion": "latest",
+  "typingsEnv": "node",
+  "typingsHost": "http://localhost:8080/",
+  "typingsDir": "./src",
+  "backendSrc": "./src",
+  "backendLib": "./lib",
+  "schemaDir": "./"
 }
-
-schema {
-  query: Query
-}
 ```
 
-:warning: The schema defines the types of data that your GraphQL API can return. It is important to define the schema before you start developing your resolvers!
-
-The gecli command generates resolvers for the types defined in your schema. This saves you time from having to write the resolvers yourself.
-
-```
-gecli create backend
-gecli codegen resolve
-```
-
-The code in the src/Query/Helloworld.ts file defines the resolver for the Hellloworld query. The resolver is a function that returns the data requested by the query.
-
-```ts
-import { FieldResolveInput } from 'stucco-js';
-import { resolverFor } from '../zeus/index.js';
-
-export const handler = async (input: FieldResolveInput) =>
-  resolverFor('Query', 'Helloworld', async (args) => {})(input.arguments);
-```
-
-We can generate now our return code, add in brackets this snippet
-
-```ts
-return 'Hello World!';
-```
-
-To start the server, run the following command in your terminal:
+And run the follwing command in the project:
 
 ```sh
-npm run start
+gecli schema && gecli cloud install
 ```
 
-Open again browser and type `localhost:8080/graphql`, as you see, you created your first backend application !
+Now everything should work! Have fun using :smile:
 
-To test the resolver, enter the following query into the left-hand side panel:
+## Author
 
-```graphql
-{
-  Helloworld
-}
-```
+👤 **GraphQL Editor**
 
-and click run icon, Yay we got our message !
+- Website: https://graphqleditor.com
+- Github: [@graphql-editor](https://github.com/graphql-editor)
 
-## Conclusions
+## 🤝 Contributing
 
-In this blog article, you learned how to create a simple Hello World app with GraphQL Editor and Stucco.js. You also learned how to generate resolvers using the gecli command and how to test the resolvers using the GraphQL Editor website.
+Contributions, issues and feature requests are welcome!
 
-## Sources
+Feel free to check [issues page](https://github.com/graphql-editor/graphql-editor-integrations/issues).
 
-If you wanna extend your first project check our projec
-:octocat: [Github Project](https://github.com/TakSeBiegam/Hello-world-stucco-app/)  
-:chart_with_upwards_trend: [GraphQL Editor Project](https://app.graphqleditor.com/this-is-my-first-app/hello-world-app)
+## 📝 License
+
+Copyright © 2023 [GraphQL Editor](https://github.com/graphql-editor).
+
+This project is [MIT](https://github.com/graphql-editor/graphql-editor-integrations/blob/master/LICENSE) licensed.
