@@ -25,7 +25,6 @@ export const AllTypesProps: Record<string,any> = {
 export const ReturnTypes: Record<string,any> = {
 	Query:{
 		suggestionUnivesties:"Path",
-		listUnis:"University",
 		listJobs:"Job"
 	},
 	Mutation:{
@@ -36,7 +35,8 @@ export const ReturnTypes: Record<string,any> = {
 	},
 	University:{
 		name:"String",
-		paths:"Path"
+		paths:"Path",
+		website:"String"
 	},
 	Path:{
 		_id:"String",

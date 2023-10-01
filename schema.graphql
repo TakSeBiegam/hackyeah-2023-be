@@ -2,7 +2,6 @@ type Query{
 	suggestionUnivesties(
 		contextId: String!
 	): [Path!]
-	listUnis: [University!]!
 	listJobs: [Job!]!
 }
 
@@ -28,6 +27,7 @@ input DialogueInput{
 type University{
 	name: String!
 	paths: [Path!]!
+	website: String!
 }
 
 type Path{

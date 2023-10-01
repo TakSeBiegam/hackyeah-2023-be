@@ -835,7 +835,6 @@ type ZEUS_UNIONS = never
 export type ValueTypes = {
     ["Query"]: AliasType<{
 suggestionUnivesties?: [{	contextId: string | Variable<any, string>},ValueTypes["Path"]],
-	listUnis?:ValueTypes["University"],
 	listJobs?:ValueTypes["Job"],
 		__typename?: boolean | `@${string}`
 }>;
@@ -853,6 +852,7 @@ reactOnConversation?: [{	conversationId: string | Variable<any, string>,	reactio
 	["University"]: AliasType<{
 	name?:boolean | `@${string}`,
 	paths?:ValueTypes["Path"],
+	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Path"]: AliasType<{
@@ -889,7 +889,6 @@ reactOnConversation?: [{	conversationId: string | Variable<any, string>,	reactio
 export type ResolverInputTypes = {
     ["Query"]: AliasType<{
 suggestionUnivesties?: [{	contextId: string},ResolverInputTypes["Path"]],
-	listUnis?:ResolverInputTypes["University"],
 	listJobs?:ResolverInputTypes["Job"],
 		__typename?: boolean | `@${string}`
 }>;
@@ -907,6 +906,7 @@ reactOnConversation?: [{	conversationId: string,	reaction: boolean},boolean | `@
 	["University"]: AliasType<{
 	name?:boolean | `@${string}`,
 	paths?:ResolverInputTypes["Path"],
+	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["Path"]: AliasType<{
@@ -948,7 +948,6 @@ reactOnConversation?: [{	conversationId: string,	reaction: boolean},boolean | `@
 export type ModelTypes = {
     ["Query"]: {
 		suggestionUnivesties?: Array<ModelTypes["Path"]> | undefined,
-	listUnis: Array<ModelTypes["University"]>,
 	listJobs: Array<ModelTypes["Job"]>
 };
 	["Mutation"]: {
@@ -963,7 +962,8 @@ export type ModelTypes = {
 };
 	["University"]: {
 		name: string,
-	paths: Array<ModelTypes["Path"]>
+	paths: Array<ModelTypes["Path"]>,
+	website: string
 };
 	["Path"]: {
 		_id: string,
@@ -1000,7 +1000,6 @@ export type GraphQLTypes = {
     ["Query"]: {
 	__typename: "Query",
 	suggestionUnivesties?: Array<GraphQLTypes["Path"]> | undefined,
-	listUnis: Array<GraphQLTypes["University"]>,
 	listJobs: Array<GraphQLTypes["Job"]>
 };
 	["Mutation"]: {
@@ -1017,7 +1016,8 @@ export type GraphQLTypes = {
 	["University"]: {
 	__typename: "University",
 	name: string,
-	paths: Array<GraphQLTypes["Path"]>
+	paths: Array<GraphQLTypes["Path"]>,
+	website: string
 };
 	["Path"]: {
 	__typename: "Path",
