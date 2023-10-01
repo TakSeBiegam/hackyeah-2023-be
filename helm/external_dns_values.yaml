@@ -3,7 +3,7 @@ sources:
   - service
   - ingress
 domainFilters:
-  - api.hackyeah.aexol.work
+  - hackyeah.project.aexol.work
 extraArgs:
   - --zone-id-filter=c488080426822cb8bf67a3c75b0c5300
   - --cloudflare-proxied

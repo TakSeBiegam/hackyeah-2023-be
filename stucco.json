@@ -3,27 +3,37 @@
     "resolvers": {
         "Query.suggestionUnivesties": {
             "resolve": {
-                "name": "lib/Query/suggestionUnivesties.js"
+                "name": "lib\\Query\\suggestionUnivesties.js"
             }
         },
         "Mutation.useFineTuneJob": {
             "resolve": {
-                "name": "lib/Mutation/useFineTuneJob"
+                "name": "lib\\Mutation\\useFineTuneJob"
             }
         },
         "Mutation.testEndpoint": {
             "resolve": {
-                "name": "lib/Mutation/testEndpoint"
+                "name": "lib\\Mutation\\testEndpoint.js"
             }
         },
         "Path.university": {
             "resolve": {
-                "name": "lib/Path/university"
+                "name": "lib\\Path\\university"
             }
         },
         "Mutation.createBotDialogue": {
             "resolve": {
-                "name": "lib/Mutation/createBotDialogue"
+                "name": "lib\\Mutation\\createBotDialogue"
+            }
+        },
+        "Query.listUnis": {
+            "resolve": {
+                "name": "lib\\Query\\listUnis"
+            }
+        },
+        "Query.listJobs": {
+            "resolve": {
+                "name": "lib\\Query\\listJobs"
             }
         }
     }

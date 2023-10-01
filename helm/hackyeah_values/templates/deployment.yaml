@@ -31,7 +31,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: registry.gitlab.aexol.com/arkadiusz.kurylo/hackyeah/api:13df6a0d
+          image: registry.gitlab.aexol.com/arkadiusz.kurylo/hackyeah/api:db4c02b9
           env:
           - name: MONGO_URL
             valueFrom:

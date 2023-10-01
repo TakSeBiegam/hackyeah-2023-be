@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: registry.gitlab.aexol.com/aexol/tuki_backend/api
+  repository: registry.gitlab.aexol.com/arkadiusz.kurylo/hackyeah/api:db4c02b9
   pullPolicy: IfNotPresent
   tag: ''
 
@@ -24,7 +24,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false

@@ -17,19 +17,18 @@ export const handler = async (input: FieldResolveInput) =>
           ],
           reaction: ConversationReaction.NOTREACTED,
         })
-        .then((r) => r.insertedId.length !== 0);
+        .then((r) => r.insertedId);
     } else {
-      return o('Conversations')
-        .collection.updateOne(
-          { _id: args.dialogueId },
-          {
-            payload: [
-              { content: args.userPayload.payload, role: args.userPayload.role },
-              { content: args.botPayload.payload, role: args.botPayload.role },
-            ],
-            reaction: ConversationReaction.NOTREACTED,
-          },
-        )
-        .then((r) => r.modifiedCount !== 0);
+      await o('Conversations').collection.updateOne(
+        { _id: args.dialogueId },
+        {
+          payload: [
+            { content: args.userPayload.payload, role: args.userPayload.role },
+            { content: args.botPayload.payload, role: args.botPayload.role },
+          ],
+          reaction: ConversationReaction.NOTREACTED,
+        },
+      );
+      return args.dialogueId;
     }
   })(input.arguments);

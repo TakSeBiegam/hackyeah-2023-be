@@ -1,3 +1,5 @@
 import { ModelTypes } from '../zeus/index.js';
-    
-export type PathModel = ModelTypes['Path'];
+
+export type PathModel = Omit<ModelTypes['Path'], 'university'> & {
+  university: string;
+};

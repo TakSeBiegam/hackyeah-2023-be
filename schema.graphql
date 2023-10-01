@@ -1,5 +1,5 @@
 type Query{
-	getUniByTags(
+	suggestionUnivesties(
 		contextId: String!
 	): [Path!]
 	listUnis: [University!]!
@@ -15,6 +15,7 @@ type Mutation{
 	useFineTuneJob: Boolean!
 	reactOnConversation(
 		conversationId: String!
+		reaction: Boolean!
 	): Boolean!
 	testEndpoint: Boolean
 }
