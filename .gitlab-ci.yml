@@ -1,0 +1,26 @@
+image: node:16
+
+stages:
+  - build
+  - build-image
+
+build:
+  stage: build
+  image: node:16
+  script:
+    - npm ci
+    - npm run build
+
+build-image:
+  stage: build-image
+  variables:
+    REGISTRY: registry.gitlab.aexol.com/arkadiusz.kurylo/hackyeah
+    TAG: ${CI_COMMIT_SHORT_SHA}
+  image: docker:20.10.13
+  script:
+    - docker build -t ${REGISTRY}/api:${TAG} .
+    - docker tag ${REGISTRY}/api:${TAG} ${REGISTRY}/api:latest
+    - docker logout
+    - docker login registry.gitlab.aexol.com -u gitlab-ci-token -p $CI_JOB_TOKEN
+    - docker push ${REGISTRY}/api:latest
+    - docker push ${REGISTRY}/api:${TAG}

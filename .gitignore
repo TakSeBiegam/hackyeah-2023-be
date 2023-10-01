@@ -2,4 +2,3 @@
 /lib
 /node_modules
 .graphql-editor-auth.json
-/helm
