@@ -2,19 +2,20 @@
 
 export const AllTypesProps: Record<string,any> = {
 	Query:{
-		getUniByTags:{
+		suggestionUnivesties:{
 
 		}
 	},
 	Mutation:{
 		createBotDialogue:{
-			payload:"BotDialogueInput"
+			userPayload:"DialogueInput",
+			botPayload:"DialogueInput"
 		},
 		reactOnConversation:{
 
 		}
 	},
-	BotDialogueInput:{
+	DialogueInput:{
 		role:"DialogueRole"
 	},
 	DialogueRole: "enum" as const,
@@ -23,21 +24,24 @@ export const AllTypesProps: Record<string,any> = {
 
 export const ReturnTypes: Record<string,any> = {
 	Query:{
-		getUniByTags:"Path",
+		suggestionUnivesties:"Path",
 		listUnis:"University",
-		listTags:"String"
+		listJobs:"Job"
 	},
 	Mutation:{
 		createBotDialogue:"String",
 		useFineTuneJob:"Boolean",
-		reactOnConversation:"Boolean"
+		reactOnConversation:"Boolean",
+		testEndpoint:"Boolean"
 	},
 	University:{
 		name:"String",
-		paths:"String"
+		paths:"Path"
 	},
 	Path:{
+		_id:"String",
 		name:"String",
+		university:"University",
 		tags:"String"
 	},
 	Conversation:{
@@ -49,6 +53,13 @@ export const ReturnTypes: Record<string,any> = {
 	ConversationPayload:{
 		role:"DialogueRole",
 		content:"String"
+	},
+	Job:{
+		_id:"String",
+		tuneId:"String",
+		file:"String",
+		createdAt:"String",
+		conversationCountWhenCreated:"Int"
 	}
 }
 

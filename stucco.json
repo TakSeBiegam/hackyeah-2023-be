@@ -1,13 +1,29 @@
 {
+    "RequestTimeout": -1,
     "resolvers": {
-        "Query.getUniByTags": {
+        "Query.suggestionUnivesties": {
             "resolve": {
-                "name": "lib/Query/getUniByTags.js"
+                "name": "lib/Query/suggestionUnivesties.js"
             }
         },
         "Mutation.useFineTuneJob": {
             "resolve": {
                 "name": "lib\\Mutation\\useFineTuneJob"
+            }
+        },
+        "Mutation.testEndpoint": {
+            "resolve": {
+                "name": "lib\\Mutation\\testEndpoint"
+            }
+        },
+        "Path.university": {
+            "resolve": {
+                "name": "lib\\Path\\university"
+            }
+        },
+        "Mutation.createBotDialogue": {
+            "resolve": {
+                "name": "lib\\Mutation\\createBotDialogue"
             }
         }
     }

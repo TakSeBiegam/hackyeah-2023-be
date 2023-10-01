@@ -1,32 +1,32 @@
 import { iGraphQL } from 'i-graphql';
-import {ObjectId} from 'mongodb'
+import { ObjectId } from 'mongodb';
 import { Models } from '../../models/index.js';
 import { Collections } from './collections.js';
 
 export const orm = async () => {
   return iGraphQL<
     {
-        Universities: Models["UniversityModel"]
-        Paths: Models["PathModel"]
-        Conversations: Models["ConversationModel"]
-      },
+      Universities: Models['UniversityModel'];
+      Paths: Models['PathModel'];
+      Conversations: Models['ConversationModel'];
+      Jobs: Models['JobModel'];
+    },
     {
       _id: () => string;
-      createdAt: () => Date;
+      createdAt: () => string;
     }
   >(
     {
       _id: () => new ObjectId().toHexString(),
-      createdAt: () => new Date(),
+      createdAt: () => new Date().toISOString(),
     },
-    async (db) => {
-    },
+    async (db) => {},
   );
 };
 
 export const MongOrb = await orm();
 
-export const mustFindOne = async (col:  Collections, filter: {}, options: {} | null = null) => {
+export const mustFindOne = async (col: Collections, filter: {}, options: {} | null = null) => {
   return orm().then((o) =>
     o(col)
       .collection.findOne(filter, options ? options : {})
@@ -36,11 +36,7 @@ export const mustFindOne = async (col:  Collections, filter: {}, options: {} | n
   );
 };
 
-export const mustFindAny = async (
-  col: Collections,
-  filter: {} | null = null,
-  options: {} | null = null,
-) => {
+export const mustFindAny = async (col: Collections, filter: {} | null = null, options: {} | null = null) => {
   return await orm().then((o) =>
     o(col)
       .collection.find(filter ? filter : {}, options ? options : {})

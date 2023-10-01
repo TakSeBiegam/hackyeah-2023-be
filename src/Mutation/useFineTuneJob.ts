@@ -1,60 +1,40 @@
 import { FieldResolveInput } from 'stucco-js';
 import { resolverFor } from '../zeus/index.js';
 import { orm } from '../utils/db/orm.js';
-import OpenAI from 'openai';
-
-export type JobResponseObject = {
-  error?: ErrorMessage | null;
-  id?: string;
-  status?: string;
-  organization_id?: string;
-  model?: string;
-  fine_tuned_model?: string;
-  hyperparameters?: Hyper | null;
-};
-type Hyper = {
-  n_epochs: number;
-};
-type ErrorMessage = {
-  message: string | undefined;
-};
+import OpenAI, { toFile } from 'openai';
+import fs from 'fs';
+import { createFineTuneJob, createOpenaiFile } from '../utils/finetuning.js';
+import { send } from 'process';
 
 export const handler = async (input: FieldResolveInput) =>
   resolverFor('Mutation', 'useFineTuneJob', async (args) => {
     const o = await orm();
     const conversations = await o('Conversations').collection.find({}).toArray();
-    if (conversations.length < 1) {
-      return false;
-    }
-    const isolatedConversations = conversations.map((conversation) => conversation.payload);
-    const transformedObject = isolatedConversations.map((context) => ({
-      messages: context.map((item) => ({
-        role: item.role,
-        content: item.content,
-      })),
-    }));
+    const jobs = await o('Jobs').collection.countDocuments({
+      conversationCountWhenCreated: { $gte: conversations.length + 1 },
+    });
+    if (conversations.length % 1000 > 100 && conversations.length % 1000 < 125 && jobs === 0) {
+      let datasets = '';
+      const isolatedConversations = conversations.map((conversation) => conversation.payload);
+      isolatedConversations.forEach((context) => {
+        const content = context.map((item) => ({
+          role: item.role,
+          content: item.content,
+        }));
+        datasets += `${JSON.stringify({ messages: content })}\n`;
+      });
 
-    const dataset = JSON.stringify(transformedObject);
-    console.log(dataset);
-    const url = 'https://api.openai.com/v1/files';
-    const headers = {
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-    };
-    const formData = new FormData();
-    formData.append('purpose', 'fine-tune');
-    formData.append('file', new Blob([dataset], { type: 'text/plain' }));
-    const options = {
-      method: 'POST',
-      headers: headers,
-      body: formData,
-    };
-
-    try {
-      console.log('make response');
-      const response = await fetch(url, options);
-      console.log('done');
+      const sendFile = await createOpenaiFile(datasets);
+      const createFineTune = await createFineTuneJob(sendFile.id);
+      await o('Jobs').createWithAutoFields(
+        '_id',
+        'createdAt',
+      )({
+        tuneId: createFineTune._id,
+        file: createFineTune.file,
+        conversationCountWhenCreated: conversations.length,
+      });
       return true;
-    } catch (error) {
-      throw new Error(`Error: ${error}`);
     }
+    return false;
   })(input.arguments);

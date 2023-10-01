@@ -4,6 +4,7 @@ import { UniversityModel } from './UniversityModel.js'
 import { PathModel } from './PathModel.js'
 import { ConversationModel } from './ConversationModel.js'
 import { ConversationPayloadModel } from './ConversationPayloadModel.js'
+import { JobModel } from './JobModel.js'
 
 
 export type Models = {
@@ -13,4 +14,5 @@ export type Models = {
 	PathModel: PathModel;
 	ConversationModel: ConversationModel;
 	ConversationPayloadModel: ConversationPayloadModel;
+	JobModel: JobModel;
 };

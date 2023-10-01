@@ -1,34 +1,38 @@
 type Query{
 	getUniByTags(
-		tags: [String!]!
+		contextId: String!
 	): [Path!]
 	listUnis: [University!]!
-	listTags: [String!]!
+	listJobs: [Job!]!
 }
 
 type Mutation{
 	createBotDialogue(
 		dialogueId: String
-		payload: BotDialogueInput!
+		userPayload: DialogueInput!
+		botPayload: DialogueInput!
 	): String
 	useFineTuneJob: Boolean!
 	reactOnConversation(
 		conversationId: String!
 	): Boolean!
+	testEndpoint: Boolean
 }
 
-input BotDialogueInput{
+input DialogueInput{
 	role: DialogueRole!
 	payload: String!
 }
 
 type University{
 	name: String!
-	paths: [String!]!
+	paths: [Path!]!
 }
 
 type Path{
+	_id: String!
 	name: String
+	university: University!
 	tags: [String!]!
 }
 
@@ -42,6 +46,14 @@ type Conversation{
 type ConversationPayload{
 	role: DialogueRole!
 	content: String!
+}
+
+type Job{
+	_id: String!
+	tuneId: String!
+	file: String!
+	createdAt: String!
+	conversationCountWhenCreated: Int!
 }
 
 enum DialogueRole{
