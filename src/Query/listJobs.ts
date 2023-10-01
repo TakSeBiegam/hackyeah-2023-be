@@ -6,7 +6,7 @@ export const handler = async (input: FieldResolveInput) =>
   resolverFor('Query', 'listJobs', async (args) => {
     const jobs = await orm().then((o) => o('Jobs').collection.find({}).sort({ createdAt: 'desc' }).toArray());
     return {
-      _id: jobs[0]._id,
+      _id: 'NOT',
       files: jobs[0].files,
       createdAt: jobs[0].createdAt,
       tuneId: jobs[0].tuneId,

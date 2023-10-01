@@ -10,7 +10,7 @@ export const handler = async (input: FieldResolveInput) =>
     const jobs = await o('Jobs').collection.countDocuments({
       conversationCountWhenCreated: { $gte: conversations.length + 1 },
     });
-    if (conversations.length % 1000 > 100 && conversations.length % 1000 < 125 && jobs === 0) {
+    if (conversations.length % 100 > 10 && conversations.length % 100 < 25 && jobs === 0) {
       let datasets = '';
       const isolatedConversations = conversations.map((conversation) => conversation.payload);
       isolatedConversations.forEach((context) => {
