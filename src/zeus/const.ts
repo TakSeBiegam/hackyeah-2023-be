@@ -57,9 +57,10 @@ export const ReturnTypes: Record<string,any> = {
 	Job:{
 		_id:"String",
 		tuneId:"String",
-		file:"String",
+		files:"String",
 		createdAt:"String",
-		conversationCountWhenCreated:"Int"
+		conversationCountWhenCreated:"Int",
+		fineTuneModel:"String"
 	}
 }
 

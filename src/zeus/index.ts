@@ -877,9 +877,10 @@ reactOnConversation?: [{	conversationId: string | Variable<any, string>,	reactio
 	["Job"]: AliasType<{
 	_id?:boolean | `@${string}`,
 	tuneId?:boolean | `@${string}`,
-	file?:boolean | `@${string}`,
+	files?:boolean | `@${string}`,
 	createdAt?:boolean | `@${string}`,
 	conversationCountWhenCreated?:boolean | `@${string}`,
+	fineTuneModel?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["DialogueRole"]:DialogueRole;
@@ -931,9 +932,10 @@ reactOnConversation?: [{	conversationId: string,	reaction: boolean},boolean | `@
 	["Job"]: AliasType<{
 	_id?:boolean | `@${string}`,
 	tuneId?:boolean | `@${string}`,
-	file?:boolean | `@${string}`,
+	files?:boolean | `@${string}`,
 	createdAt?:boolean | `@${string}`,
 	conversationCountWhenCreated?:boolean | `@${string}`,
+	fineTuneModel?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	["DialogueRole"]:DialogueRole;
@@ -948,7 +950,7 @@ reactOnConversation?: [{	conversationId: string,	reaction: boolean},boolean | `@
 export type ModelTypes = {
     ["Query"]: {
 		suggestionUnivesties?: Array<ModelTypes["Path"]> | undefined,
-	listJobs: Array<ModelTypes["Job"]>
+	listJobs: ModelTypes["Job"]
 };
 	["Mutation"]: {
 		createBotDialogue?: string | undefined,
@@ -984,9 +986,10 @@ export type ModelTypes = {
 	["Job"]: {
 		_id: string,
 	tuneId: string,
-	file: string,
+	files: Array<string>,
 	createdAt: string,
-	conversationCountWhenCreated: number
+	conversationCountWhenCreated: number,
+	fineTuneModel: string
 };
 	["DialogueRole"]:DialogueRole;
 	["ConversationReaction"]:ConversationReaction;
@@ -1000,7 +1003,7 @@ export type GraphQLTypes = {
     ["Query"]: {
 	__typename: "Query",
 	suggestionUnivesties?: Array<GraphQLTypes["Path"]> | undefined,
-	listJobs: Array<GraphQLTypes["Job"]>
+	listJobs: GraphQLTypes["Job"]
 };
 	["Mutation"]: {
 	__typename: "Mutation",
@@ -1042,9 +1045,10 @@ export type GraphQLTypes = {
 	__typename: "Job",
 	_id: string,
 	tuneId: string,
-	file: string,
+	files: Array<string>,
 	createdAt: string,
-	conversationCountWhenCreated: number
+	conversationCountWhenCreated: number,
+	fineTuneModel: string
 };
 	["DialogueRole"]: DialogueRole;
 	["ConversationReaction"]: ConversationReaction
