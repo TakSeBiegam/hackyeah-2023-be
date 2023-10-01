@@ -55,7 +55,7 @@ type Job{
 	files: [String!]!
 	createdAt: String!
 	conversationCountWhenCreated: Int!
-	fineTuneModel: String!
+	fineTuneModel: String
 }
 
 enum DialogueRole{

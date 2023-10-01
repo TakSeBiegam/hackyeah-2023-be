@@ -989,7 +989,7 @@ export type ModelTypes = {
 	files: Array<string>,
 	createdAt: string,
 	conversationCountWhenCreated: number,
-	fineTuneModel: string
+	fineTuneModel?: string | undefined
 };
 	["DialogueRole"]:DialogueRole;
 	["ConversationReaction"]:ConversationReaction;
@@ -1048,7 +1048,7 @@ export type GraphQLTypes = {
 	files: Array<string>,
 	createdAt: string,
 	conversationCountWhenCreated: number,
-	fineTuneModel: string
+	fineTuneModel?: string | undefined
 };
 	["DialogueRole"]: DialogueRole;
 	["ConversationReaction"]: ConversationReaction

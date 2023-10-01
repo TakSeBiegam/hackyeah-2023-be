@@ -1,10 +1,7 @@
 import { FieldResolveInput } from 'stucco-js';
 import { resolverFor } from '../zeus/index.js';
 import { orm } from '../utils/db/orm.js';
-import OpenAI, { toFile } from 'openai';
-import fs from 'fs';
 import { createFineTuneJob, createOpenaiFile } from '../utils/finetuning.js';
-import { send } from 'process';
 
 export const handler = async (input: FieldResolveInput) =>
   resolverFor('Mutation', 'useFineTuneJob', async (args) => {
@@ -31,8 +28,9 @@ export const handler = async (input: FieldResolveInput) =>
         'createdAt',
       )({
         tuneId: createFineTune._id,
-        file: createFineTune.file,
+        files: createFineTune.files,
         conversationCountWhenCreated: conversations.length,
+        fineTuneModel: createFineTune.fineTuneModel,
       });
       return true;
     }

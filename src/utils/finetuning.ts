@@ -47,8 +47,9 @@ export const createFineTuneJob = async (file: string): Promise<Models['JobModel'
   return {
     _id: 'UNKNOWN',
     createdAt: new Date().toISOString(),
-    file,
+    files: fineTuningJob.result_files,
     tuneId: fineTuningJob.id,
     conversationCountWhenCreated: 0,
+    fineTuneModel: fineTuningJob.fine_tuned_model || undefined,
   };
 };
