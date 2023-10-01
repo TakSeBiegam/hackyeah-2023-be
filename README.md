@@ -1,69 +1,45 @@
-# Welcome to gei-bookings :book:
+# Welcome to Last Call :book:
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/graphql-editor/graphql-editor-integrations/blob/master/LICENSE)
-[![Build Status](https://github.com/graphql-editor/graphql-editor-integrations/actions/workflows/release.yml/badge.svg)](https://github.com/graphql-editor/graphql-editor-integrations/actions?query=branch%3Amaster)
+> The &#34;Last call&#34; Is focused on providing essential tools for handling ai responds and services, with user friendly code and logic to resolving problems
 
-> The &#34;Gei-bookings&#34; integration is focused on providing essential tools for handling bookings and services, with enchanced error detection system which helps resolving problems
-
-### :house: [Homepage](https://github.com/graphql-editor/graphql-editor-integrations)
+### :house: [Homepage](https://github.com/TakSeBiegam/hackyeah-2023-be)
 
 ## Installation :zap:
 
 <!-- prettier-ignore -->
 ```sh
-npm install gei-bookings
+git clone https://github.com/TakSeBiegam/hackyeah-2023-be.git
+or
+git clone git@github.com:TakSeBiegam/hackyeah-2023-be.git
+```
+
+<!-- prettier-ignore -->
+```sh
+npm install 
 ```
 
 ## Usage 🏗️
 
-##### We will be using graphql-editor-cli to speed-up the usage process, </br> You can install it with:
-
 <!-- prettier-ignore -->
 ```sh
-npm install -g graphql-editor-cli
+set:
+- MONGO_URL
+- OPENAI_API_KEY
+as your envs in ".env" file
 ```
-
-First, you can check out our [gei-bookings sandbox schema](https://app.graphqleditor.com/editor-integrations/bookings-sandbox) or create your own schema, but be sure to connect gei-bookings to your resolvers in microservices.
-
-create your .graphql-editor.json file in the root dir of project:
-
-```json
-{
-  "namespace": "editor-integrations",
-  "project": "bookings-sandbox",
-  "projectVersion": "latest",
-  "typingsEnv": "node",
-  "typingsHost": "http://localhost:8080/",
-  "typingsDir": "./src",
-  "backendSrc": "./src",
-  "backendLib": "./lib",
-  "schemaDir": "./"
-}
-```
-
-And run the follwing command in the project:
-
-```sh
-gecli schema && gecli cloud install
-```
-
-Now everything should work! Have fun using :smile:
 
 ## Author
 
-👤 **GraphQL Editor**
-
-- Website: https://graphqleditor.com
-- Github: [@graphql-editor](https://github.com/graphql-editor)
+👤 **Team Aexol**
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check [issues page](https://github.com/graphql-editor/graphql-editor-integrations/issues).
+Feel free to check [issues page](https://github.com/TakSeBiegam/hackyeah-2023-be/issues).
 
 ## 📝 License
 
-Copyright © 2023 [GraphQL Editor](https://github.com/graphql-editor).
+Copyright © 2023 [TakSeBiegam](https://github.com/TakSeBiegam/).
 
-This project is [MIT](https://github.com/graphql-editor/graphql-editor-integrations/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/TakSeBiegam/hackyeah-2023-be/blob/master/LICENSE) licensed.
