@@ -8,22 +8,22 @@
         },
         "Mutation.useFineTuneJob": {
             "resolve": {
-                "name": "lib\\Mutation\\useFineTuneJob"
+                "name": "lib/Mutation/useFineTuneJob"
             }
         },
         "Mutation.testEndpoint": {
             "resolve": {
-                "name": "lib\\Mutation\\testEndpoint"
+                "name": "lib/Mutation/testEndpoint"
             }
         },
         "Path.university": {
             "resolve": {
-                "name": "lib\\Path\\university"
+                "name": "lib/Path/university"
             }
         },
         "Mutation.createBotDialogue": {
             "resolve": {
-                "name": "lib\\Mutation\\createBotDialogue"
+                "name": "lib/Mutation/createBotDialogue"
             }
         }
     }
