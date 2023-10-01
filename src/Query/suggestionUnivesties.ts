@@ -5,8 +5,8 @@ import { openai } from '../utils/finetuning.js';
 
 export const handler = async (input: FieldResolveInput) =>
   resolverFor('Query', 'suggestionUnivesties', async (args) => {
-    const o = await orm();
-    const conversation = await o('Conversations').collection.findOne({ _id: args.contextId });
+    const conversation = await orm().then((o) => o('Conversations').collection.findOne({ _id: args.contextId }));
+    console.log(conversation);
     if (!conversation) {
       throw new Error('cannot find conversation');
     }
@@ -31,6 +31,7 @@ export const handler = async (input: FieldResolveInput) =>
     if (!chatRespond.choices[0].message.content) {
       throw new Error('bot suggestion is empty');
     }
+    const o = await orm();
     const tags = JSON.parse(chatRespond.choices[0].message.content) as { tags: string[] };
     const unies = await o('Paths')
       .collection.aggregate([
